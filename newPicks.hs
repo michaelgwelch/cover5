@@ -12,15 +12,23 @@ main =
     let numGames = (read $ head args) 
     putStrLn $ show $ makePicks numGames
 
+-- 'Flips' a coin. Returns 'a' or 'b'.
 flipCoin :: RVar Char
 flipCoin =
   do
     (_,coin) <- fromJust $ choiceExtract ['a', 'b']
     return coin
 
+
+-- Selects a game from a list of game identifiers.
 selectGame :: [Int] -> RVar ([Int], Int)
 selectGame = fromJust . choiceExtract 
 
+-- Selects a game and a team from a list of games.
+-- Input: A list of game identifiers
+-- Output: A pair that contains the remaining list of game identifiers
+--         and another pair. The second pair contains the selected game and
+--         what team is selected to win.
 makePick :: [Int] -> RVar ([Int], (Int,Char))
 makePick gameIds = 
   do
