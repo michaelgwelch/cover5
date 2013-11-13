@@ -12,17 +12,20 @@ main =
     let numGames = (read $ head args) 
     putStrLn $ show $ makePicks numGames
 
--- 'Flips' a coin. Returns 'a' or 'b'.
-flipCoin :: RVar Char
-flipCoin =
+-- | Makes 5 picks for cover5. Takes an int
+--   which is the number of games to choose from.
+--   Returns a list of pairs. Each pair indicates
+--   a game id and a or b.
+makePicks :: Int -> RVar [(Int,Char)]
+makePicks n = 
   do
-    (_,coin) <- fromJust $ choiceExtract ['a', 'b']
-    return coin
-
-
--- Selects a game from a list of game identifiers.
-selectGame :: [Int] -> RVar ([Int], Int)
-selectGame = fromJust . choiceExtract 
+    let ids = [1..n]
+    (ids1, g1) <- makePick ids
+    (ids2, g2) <- makePick ids1
+    (ids3, g3) <- makePick ids2
+    (ids4, g4) <- makePick ids3
+    (ids5, g5) <- makePick ids4
+    return [g1,g2,g3,g4,g5]
 
 -- Selects a game and a team from a list of games.
 -- Input: A list of game identifiers
@@ -36,13 +39,16 @@ makePick gameIds =
     teamId <- flipCoin
     return (gameIds', (gameId,teamId))
 
-makePicks :: Int -> RVar [(Int,Char)]
-makePicks n = 
+-- 'Flips' a coin. Returns 'a' or 'b'.
+flipCoin :: RVar Char
+flipCoin =
   do
-    let ids = [1..n]
-    (ids1, g1) <- makePick ids
-    (ids2, g2) <- makePick ids1
-    (ids3, g3) <- makePick ids2
-    (ids4, g4) <- makePick ids3
-    (ids5, g5) <- makePick ids4
-    return [g1,g2,g3,g4,g5]
+    (_,coin) <- fromJust $ choiceExtract ['a', 'b']
+    return coin
+
+
+-- Selects a game from a list of game identifiers.
+-- Returns the modified list and the chosen game id.
+selectGame :: [Int] -> RVar ([Int], Int)
+selectGame = fromJust . choiceExtract 
+
