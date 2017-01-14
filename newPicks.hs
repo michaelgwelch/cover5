@@ -4,13 +4,18 @@ import Data.Random.RVar
 import Data.Maybe
 import System.Random
 import System.Environment
+import Data.List
+import Data.Functor
 
 
 main = 
   do
     args <- getArgs
     let numGames = (read $ head args) 
-    putStrLn $ show $ makePicks numGames
+    putStrLn $ show $ sortBy comparePicks <$> makePicks numGames
+
+comparePicks :: (Int,Char) -> (Int,Char) -> Ordering
+comparePicks (a,_) (b,_) = compare a b
 
 -- | Makes 5 picks for cover5. Takes an int
 --   which is the number of games to choose from.
