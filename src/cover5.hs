@@ -1,15 +1,16 @@
+module Cover5 where
+
 import Data.Random.Extras
 import Data.Random.Show.Unsafe
 import Data.Random.RVar
 import Data.Maybe
-import System.Random
 import System.Environment
 import Data.List
-import Data.Functor
 import Control.Monad.State
 
 
-main = 
+run :: IO ()
+run = 
   do
     args <- getArgs
     let numGames = (read $ head args) 
