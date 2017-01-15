@@ -48,7 +48,7 @@ makePick gameIds =
 flipCoin :: RVar Char
 flipCoin =
   do
-    (_,coin) <- fromJust $ choiceExtract ['a', 'b']
+    (_,coin) <- fromJust $ choiceExtract "ab"
     return coin
 
 
