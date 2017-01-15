@@ -54,7 +54,7 @@ executable cover5
   -- other-extensions:    
   
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.9 && <4.10,
+  build-depends:       base >=4.7 && <4.10,
                        mtl >=2.2 && <3,
                        random-extras >=0.19,
                        random-fu >=0.2.7
