@@ -18,13 +18,8 @@ import Control.Applicative ((<*>))
 #endif
 
 choose5 :: Int -> RVar [(Int,Char)]
-choose5 numGames = sortBy comparePicks <$> 
-        evalStateT makePicks [1..numGames]
+choose5 numGames = sort <$> evalStateT makePicks [1..numGames]
 
-
--- | An ordering function for picks. It orders on the first field
-comparePicks :: (Int,Char) -> (Int,Char) -> Ordering
-comparePicks (a,_) (b,_) = compare a b
 
 -- | Makes 5 picks for cover5. Takes an int
 --   which is the number of games to choose from.
