@@ -1,20 +1,15 @@
-module Cover5 where
+module Cover5(run) where
 
 import Data.Random.Extras
 import Data.Random.Show.Unsafe
 import Data.Random.RVar
 import Data.Maybe
-import System.Environment
 import Data.List
 import Control.Monad.State
 
 
-run :: IO ()
-run = 
-  do
-    args <- getArgs
-    let numGames = (read $ head args) 
-    putStrLn $ show $ sortBy comparePicks <$> 
+run :: Int -> RVar [(Int,Char)]
+run numGames = sortBy comparePicks <$> 
         evalStateT makePicks [1..numGames]
 
 -- | An ordering function for picks. It orders on the first field
