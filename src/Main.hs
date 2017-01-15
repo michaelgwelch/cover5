@@ -2,7 +2,7 @@ module Main where
 
 import System.Environment(getArgs)
 import Data.Random()
-import Data.RVar(sampleRVar)
+import Data.Random.RVar(sampleRVar)
 import Cover5(choose5)
 
 main :: IO ()
