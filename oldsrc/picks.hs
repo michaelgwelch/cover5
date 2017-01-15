@@ -2,10 +2,10 @@ import Control.Applicative
 import System.Random
 import Data.List
 
-pickNum = \h -> getStdRandom (randomR (1,h))
+pickNum h = getStdRandom (randomR (1,h))
 
 pickGame :: Int -> IO (Int, Int)
-pickGame = \numGames -> pure (\g t -> (g,t)) <*> pickNum numGames <*> pickNum 2
+pickGame numGames = pure (\g t -> (g,t)) <*> pickNum numGames <*> pickNum 2
 
 countIf :: (a -> Bool) -> [a] -> Int
 countIf p = length . filter p

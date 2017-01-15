@@ -11,8 +11,8 @@ import Data.Functor
 main = 
   do
     args <- getArgs
-    let numGames = (read $ head args) 
-    putStrLn $ show $ sortBy comparePicks <$> makePicks numGames
+    let numGames = read $ head args
+    print $ sortBy comparePicks <$> makePicks numGames
 
 comparePicks :: (Int,Char) -> (Int,Char) -> Ordering
 comparePicks (a,_) (b,_) = compare a b
