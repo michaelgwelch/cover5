@@ -22,7 +22,7 @@ synopsis:            A random picker for the Cover 5 game.
 homepage:            https://github.com/michaelgwelch/cover5
 
 -- The license under which the package is released.
-license:             PublicDomain
+license:             MIT
 
 -- The package author(s).
 author:              Michael Welch
@@ -48,7 +48,7 @@ executable cover5
   main-is:             Main.hs
   
   -- Modules included in this executable, other than Main.
-  -- other-modules:       
+  other-modules:       Cover5
   
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:    
