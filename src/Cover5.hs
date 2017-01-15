@@ -13,8 +13,8 @@ import Control.Monad.State(StateT, evalStateT, get, put, lift)
 -- needs them. Also the CPP option at top of file
 -- is just for this #if
 #if __GLASGOW_HASKELL__ <= 708
-import Data.Functor (<$>)
-import Control.Applicative (<*>)
+import Data.Functor ((<$>))
+import Control.Applicative ((<*>))
 #endif
 
 choose5 :: Int -> RVar [(Int,Char)]
