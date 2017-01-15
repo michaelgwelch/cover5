@@ -15,14 +15,7 @@ choose5 numGames = sort <$> evalStateT makePicks [1..numGames]
 --   Returns a list of pairs. Each pair indicates
 --   a game id and a or b.
 makePicks :: StateT [Int] RVar [(Int,Char)]
-makePicks = 
-  do
-    g1 <- makePick
-    g2 <- makePick
-    g3 <- makePick
-    g4 <- makePick
-    g5 <- makePick
-    return [g1,g2,g3,g4,g5]
+makePicks = sequence $ replicate 5 makePick
 
 -- A state transformer that selects a game and a team from a list of games.
 -- The state is modified to remove the selected game from the state.
