@@ -34,20 +34,21 @@ makePicks =
 -- A state transformer that selects a game and a team from a list of games.
 -- The state is modified to remove the selected game from the state.
 makePick :: StateT [Int] RVar (Int,Char)
-makePick =
-  do
-    gameId <- selectGame
-    teamId <- lift flipCoin
-    return (gameId,teamId)
+makePick = (,) <$> selectGame <*> lift flipCoin
+-- alternatively, using the monad
+-- makePick = do
+--              gameId <- selectGame
+--              teamId <- lift flipCoin
+--              return (gameId,teamId)
 
 
 -- 'Flips' a coin. Returns 'a' or 'b'.
 flipCoin :: RVar Char
-flipCoin =
-  do
-    (_,coin) <- fromJust $ choiceExtract ['a', 'b']
-    return coin
-
+flipCoin = snd <$> (fromJust $ choiceExtract "ab")
+-- alternatively, using the monad:
+-- flipCoin = do
+--              (_,coin) <- fromJust $ choiceExtract "ab"
+--              return coin
 
 -- A state transformer that selects a game identifier 
 -- from the list of identifiers
