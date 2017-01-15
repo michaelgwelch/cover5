@@ -7,6 +7,7 @@ import Data.Maybe
 import Data.List
 import Control.Monad.State
 import Data.Functor
+import Control.Applicative
 
 
 run :: Int -> RVar [(Int,Char)]
