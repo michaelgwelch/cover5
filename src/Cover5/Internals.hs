@@ -9,7 +9,7 @@ module Cover5.Internals
     selectGame
   ) where
 
-import Data.Random.Extras(choiceExtract)
+import Data.Random.Extras(choice,choiceExtract)
 import Data.Random(RVar)
 import Data.Maybe
 import Data.List
@@ -44,7 +44,7 @@ makePick = (,) <$> selectGame <*> lift flipCoin
 
 -- | 'Flips' a coin to pick TeamA or TeamB. 
 flipCoin :: RVar TeamId
-flipCoin = snd <$> fromJust (choiceExtract [TeamA,TeamB])
+flipCoin = choice [TeamA,TeamB]
 
 -- | A state transformer that randomly selects a game identifier 
 --   from the list of identifiers stored in state. The state is modified 
